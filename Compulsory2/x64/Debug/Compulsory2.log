@@ -1,0 +1,5 @@
+﻿  Source.cpp
+C:\Users\Kristina Hatlen\Downloads\2ADS101\ADS_september\Compulsory2\Source.cpp(127,16): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\Kristina Hatlen\Downloads\2ADS101\ADS_september\Compulsory2\Source.cpp(159,69): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\Kristina Hatlen\Downloads\2ADS101\ADS_september\Compulsory2\Source.cpp(1038,43): warning C4101: 'i': unreferenced local variable
+  Compulsory2.vcxproj -> C:\Users\Kristina Hatlen\Downloads\2ADS101\ADS_september\Compulsory2\x64\Debug\Compulsory2.exe
