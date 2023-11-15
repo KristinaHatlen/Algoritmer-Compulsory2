@@ -119,20 +119,36 @@ void printArray(int A[], int size)
  * \brief Using Bucket Sort
  */
 
-void Bucket_Sort(float arrr[], int a)
+// RECURSIVE
+void bucketSortRec(std::vector<std::vector<float>>& bucket, float arrr[], int a, int k)
 {
-    std::vector<std::vector<float>> bucket(a);
-    for (int k = 0; k < a; k++)
+    if (k < a)
     {
         int bi = a * arrr[k];
-        bucket[bi].pb(arrr[k]);
+        bucket[bi].push_back(arrr[k]);
+        bucketSortRec(bucket, arrr, a, k + 1);
     }
-    for (int k = 0; k < a; k++)
-        sort(bucket[k].begin(), bucket[k].end());
-    int pos = 0;
-    for (int k = 0; k < a; k++)
-        for (int l = 0; l < bucket[k].size(); l++)
-            arrr[pos++] = bucket[k][l];
+    else
+    {
+        for (int i = 0; i < a; i++)
+        {
+            sort(bucket[i].begin(), bucket[i].end());
+        }
+        int pos = 0;
+        for (int i = 0; i < a; i++)
+        {
+            for (int j = 0; j < bucket[i].size(); j++)
+            {
+                arrr[pos++] = bucket[i][j];
+            }
+        }
+    }
+}
+
+void Bucket_Sort(float arrrr[], int a)
+{
+    std::vector<std::vector<float>> bucket(a);
+    bucketSortRec(bucket, arrrr, a, 0);
 }
 
 
@@ -152,11 +168,11 @@ int main()
   //      vec[i] = (rand() % 100);
   //  }
 
-
+    int size = 10;
 
     // 10 elements
 	int vec[] = { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
-	float arrr[] = { 0.8, 0.3, 0.5, 0.6, 0.1, 0.7, 0.10, 0.9, 0.2, 0.4 };
+	float arrr[] = { 0.8, 0.3, 0.5, 0.6, 0.1, 0.7, 0.99, 0.9, 0.2, 0.4 };
     int arr[] = { 5, 2, 7, 19, 12, 18, 6, 8, 17, 16 };
 
 	// 100 elements
@@ -1033,7 +1049,7 @@ int main()
     //    291, 659, 193, 273, 751, 202, 62, 341, 768, 966, 483, 242, 315, 457, 503, 360, 936, 856, 76, 851, 303, 480, 280 };
 
 
-	int a = sizeof(arrr) / sizeof(arrr[0]);
+	
 
     int n = sizeof(vec) / sizeof(vec[0]), i;
     cout << "Unsorted array: \n";
@@ -1054,7 +1070,7 @@ int main()
 
 	Shell_Sort(vec, n);
 
-    Bucket_Sort(arrr, a);
+    Bucket_Sort(arrr, size);
 
     mergeSort(arr, 0, arr_size - 1);
 
@@ -1073,9 +1089,11 @@ int main()
     printArray(arr, arr_size);
 
 
-    cout << "Sorted array is \n";
-    for (int k = 0; k < a; k++)
-        cout << arrr[k] << " ";
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << arrr[i] << " ";
+    }
+
 
     return 0;
 }
